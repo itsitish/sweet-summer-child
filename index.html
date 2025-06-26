@@ -47,8 +47,8 @@
     const year = nowUTC.getUTCFullYear();
 
     // Define BST range: 27 June, 12:00 AM to 28 June, 12:00 AM BST (i.e. 26 June 23:00 UTC to 27 June 23:00 UTC)
-    const bstStart = new Date(Date.UTC(year, 5, 27, 0, 0, 0)); // June 26, 11:00 PM UTC (27 June, 12:00 AM BST)
-    const bstEnd = new Date(Date.UTC(year, 5, 28, 0, 0, 0));   // June 27, 11:00 PM UTC (28 June, 12:00 AM BST)
+    const bstStart = new Date(Date.UTC(year, 5, 26, 22, 0, 0)); // June 26, 11:00 PM UTC (27 June, 12:00 AM BST)
+    const bstEnd = new Date(Date.UTC(year, 5, 27, 22, 0, 0));   // June 27, 11:00 PM UTC (28 June, 12:00 AM BST)
     if (nowUTC >= bstStart && nowUTC < bstEnd) {
       window.location.href = "main.html";
       return;
