@@ -38,33 +38,27 @@
   <div id="countdown"></div>
 
   <script>
-    function updateCountdown() {
-      // Set target date: midnight tonight BST
-      const now = new Date();
-      // Convert to BST (UTC+1)
-      const nowUTC = new Date(now.toUTCString().slice(0, -4)); // remove GMT
-      const nowBST = new Date(nowUTC.getTime() + 60 * 60 * 1000); // add 1 hour
+  function updateCountdown() {
+    const now = new Date();
 
-      // If it's June 27 BST or later, go straight to main.html
-      if (
-        nowBST.getUTCMonth() === 5 && // June is 5 (0-indexed)
-        nowBST.getUTCDate() >= 27
-      ) {
-        window.location.href = "main.html";
-        return;
-      }
-      const target = new Date();
-      target.setUTCHours(9, 40, 50, 0); // 12 AM BST = 11 PM UTC
-      if (now > target) target.setUTCDate(target.getUTCDate() + 1); // if past 12am BST today, go to tomorrow
+    // Convert to UTC
+    const nowUTC = new Date(now.toUTCString().slice(0, -4));
 
-      const diff = target - now;
-      if (diff <= 1000) {
-        // Countdown done — replace or redirect
-        window.location.href = "main.html"; // Change this if you want inline reveal
-        return;
-      } 
+    const year = nowUTC.getUTCFullYear();
 
-        const hours = Math.floor(diff / (1000 * 60 * 60));
+    // Define BST range: 27 June, 12:00 AM to 28 June, 12:00 AM BST (i.e. 26 June 23:00 UTC to 27 June 23:00 UTC)
+    const bstStart = new Date(Date.UTC(year, 5, 26, 7, 5, 0)); // June 26, 11:00 PM UTC (27 June, 12:00 AM BST)
+    const bstEnd = new Date(Date.UTC(year, 5, 27, 23, 0, 0));   // June 27, 11:00 PM UTC (28 June, 12:00 AM BST)
+    console.log(bstStart)
+    if (nowUTC >= bstStart && nowUTC < bstEnd) {
+      window.location.href = "main.html";
+      return;
+    }
+
+    // Before BST start (show countdown)
+    if (nowUTC < bstStart) {
+      const diff = bstStart - nowUTC;
+      const hours = Math.floor(diff / (1000 * 60 * 60));
       const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
@@ -74,7 +68,12 @@
         `${seconds.toString().padStart(2, '0')}`;
 
       setTimeout(updateCountdown, 1000);
+    } else {
+      // After 28 June, do nothing or show a message
+      document.getElementById("countdown").textContent = "💖 Thank you for visiting 💖";
     }
+  }
+
 
     updateCountdown();
   </script>
