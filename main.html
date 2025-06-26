@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>For a little missus cutie</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', serif;
+            background: url('background.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 0.5em;
+            text-shadow: 1px 1px 4px #000;
+        }
+
+        p {
+            font-size: 1.4em;
+            margin-bottom: 2em;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 1px 1px 3px #000;
+        }
+
+        .carousel {
+            position: relative;
+            width: 80%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .carousel button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.4);
+            color: #fff;
+            border: none;
+            font-size: 2em;
+            padding: 0 10px;
+            cursor: pointer;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+    </style>
+</head>
+
+    <script>
+        const images = [
+            "1.jpeg",
+            "2.jpeg",
+            "3.jpeg",
+            "4.jpeg",
+            "5.jpeg",
+            "6.jpeg",
+            "7.jpeg",
+            "8.jpeg",
+            "9.jpeg",
+            "10.jpeg",
+            "11.jpeg",
+            "12.jpeg",
+            "13.jpeg",
+            "14.jpeg",
+            "15.jpeg",
+            "16.jpeg",
+            "17.jpeg",
+            "18.jpeg",
+            "19.jpeg",
+            "20.jpeg",
+            "21.jpeg",
+            "22.jpeg",
+            "23.jpeg",
+            "24.jpeg",
+            "25.jpeg",
+            "26.jpeg",
+            "27.jpeg",
+            "28.jpeg",
+            "29.jpeg",
+            "30.jpeg",
+            "31.jpg",
+            "0.jpeg"
+        ];
+        let current = 0;
+
+        function changeSlide(direction) {
+            current = (current + direction + images.length) % images.length;
+            document.getElementById('carousel-img').src = images[current];
+        }
+    </script>
+<body>
+    <h1>Hello Dear Wife</h1>
+    <p>
+        By the time you read this i will probably be snoring like a madman<br>
+        so i'm sorry i won't be able to jump on a call and wish you. <br>
+        But here's an e-version of that so... Happy Birthday Tishu!<br>
+        I kept thinking about something or the other i could do while I'm<br>
+        away but nothing really fancied me since i wont be there to see you smile<br>
+        So here's a little website I made for you, I hope you like it.<br>
+        This is only for you, please dont let others see this, or do, I don't care. Apologies.<br>
+        Hope <i><b>these</b></i> jog your memory a bit because i know <i><b>you</b></i> sure don't.
+    </p>
+
+    <div class="carousel">
+        <button class="prev" onclick="changeSlide(-1)">❮</button>
+        <img id="carousel-img" src="0.jpeg" alt="Memory 1" />
+        <button class="next" onclick="changeSlide(1)">❯</button>
+    </div>
+
+    <br>
+
+        <p>
+        Lastly, a little video I usually look back to when i miss you.
+        The song, the view, the lyrics, everything sums up nicely if you look at it through my eyes.
+        See you soon tishu! :')
+    </p>
+
+    <div class="video-container">
+  <video width="90%" controls poster="pic1.jpg" style="max-width: 600px; border-radius: 15px; margin-top: 2em; box-shadow: 0 0 20px rgba(0,0,0,0.4);">
+    <source src="31.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+
+</body>
+
+</html>

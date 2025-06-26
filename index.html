@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Cutie Content</title>
+  <style>
+    body {
+      background: #0e0e0e;
+      color: #fdf6f0;
+      font-family: 'Georgia', serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 0.5em;
+    }
+
+    #countdown {
+      font-size: 2em;
+      margin-top: 1em;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Exclusive content reveal at midnight</h1>
+  <h2>Anyone except Tishu isn't meant to see this. Move away. Get a life of your own.</h2>
+
+  <div id="countdown"></div>
+
+  <script>
+    function updateCountdown() {
+      // Set target date: midnight tonight BST
+      const now = new Date();
+      // Convert to BST (UTC+1)
+      const nowUTC = new Date(now.toUTCString().slice(0, -4)); // remove GMT
+      const nowBST = new Date(nowUTC.getTime() + 60 * 60 * 1000); // add 1 hour
+
+      // If it's June 27 BST or later, go straight to main.html
+      if (
+        nowBST.getUTCMonth() === 5 && // June is 5 (0-indexed)
+        nowBST.getUTCDate() >= 27
+      ) {
+        window.location.href = "main.html";
+        return;
+      }
+      const target = new Date();
+      target.setUTCHours(9, 40, 50, 0); // 12 AM BST = 11 PM UTC
+      if (now > target) target.setUTCDate(target.getUTCDate() + 1); // if past 12am BST today, go to tomorrow
+
+      const diff = target - now;
+      if (diff <= 1000) {
+        // Countdown done — replace or redirect
+        window.location.href = "main.html"; // Change this if you want inline reveal
+        return;
+      } 
+
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").textContent =
+        `${hours.toString().padStart(2, '0')}:` +
+        `${minutes.toString().padStart(2, '0')}:` +
+        `${seconds.toString().padStart(2, '0')}`;
+
+      setTimeout(updateCountdown, 1000);
+    }
+
+    updateCountdown();
+  </script>
+</body>
+
+</html>
